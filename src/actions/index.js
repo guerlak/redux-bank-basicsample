@@ -5,3 +5,10 @@
     }
 }
 
+export const makeDeposit = val =>{
+    return {
+        type: "DEPOSIT",
+        amount: val
+    }
+}
+
