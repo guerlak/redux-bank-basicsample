@@ -12,3 +12,11 @@ export const makeDeposit = val =>{
     }
 }
 
+export const charity = val =>{
+    return {
+        type: "CHARITY",
+        amount: val
+    }
+}
+
+

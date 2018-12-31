@@ -13,6 +13,12 @@ export default (state, action) => {
           ...state,
           totalAmount: Number(state.totalAmount) + Number(action.amount)
         }
+        case "CHARITY"  :
+        
+        return {       
+          ...state,
+          totalAmount: 0
+        }
         default:
           return state;
       }

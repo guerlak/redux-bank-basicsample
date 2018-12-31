@@ -1,9 +1,8 @@
 import React, { Component } from "react";
 import formatNumber from "format-number";
-import photographer from "./images/girl.png";
 import store from './store'
 import "./App.css";
-import { makeWithdraw, makeDeposit} from "./actions";
+import { makeWithdraw, makeDeposit, charity} from "./actions";
 
 
 function dispatchDeposit(e) {
@@ -18,8 +17,14 @@ function dispatchWithdraw(e) {
   if(store.getState().totalAmount - amount >= 0){
     store.dispatch(makeWithdraw(amount));
   }else{
-    alert("Insuficcient founds...")
+    alert("Insuficcient funds...")
   } 
+}
+
+function dispatchCharity(e) {
+
+    store.dispatch(charity());
+
 }
 
 class App extends Component {
@@ -28,7 +33,7 @@ class App extends Component {
 
     return (
       <div className="App">
-        <img className="App__userpic" src={photographer} alt="user" />
+        <img className="App__userpic" src={store.getState().userPicture} alt="user" />
         <p className="App__username">Hello, {store.getState().username} ! </p>
         <div className="App__amount">
           {formatNumber({ prefix: "$" })(store.getState().totalAmount)}
@@ -40,7 +45,7 @@ class App extends Component {
           <button data-amount="10000" onClick={dispatchDeposit}>DEPOSIT $10,000</button>
         </section>
 
-        <p className="App__giveaway">Give away all your cash to charity</p>
+        <p className="App__giveaway" onClick={dispatchCharity}>Give away all your cash to charity</p>
       </div>
     );
   }
